@@ -3,7 +3,7 @@
 #include <unistd.h>
 #include <cmath>
 
-std::string filler="KasperSuger.";
+std::string filler;
 int w,h,wdf;
 double num_eq;
 
@@ -24,14 +24,15 @@ class fill {
     }
 };
 
-int main(){
+int main(int argc, char* argv[]){
+    filler=argv[1];
     fill fillet;
     for(double i=0; true; i=i+.02){
         update_winsize();
         double sine=sin(i);
         double sineup=(sine*w+w)/2;
         for(int ct=0; ct<=sineup; ct++){
-            std::cout << fillet.charstr(filler);//filler;
+            std::cout << fillet.charstr(filler);;
         } std::cout << std::endl;
         usleep(60000);
     }
