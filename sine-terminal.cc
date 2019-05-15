@@ -14,7 +14,7 @@ void update_winsize(){
 }
 
 class fill {
-    public:
+   public:
     int max=filler.length();
     int cur=0;
     char charstr(std::string str){
@@ -25,9 +25,20 @@ class fill {
 };
 
 int main(int argc, char* argv[]){
-    filler=argv[1];
+    try{
+        if(argv[1]==""){
+            return 0;
+            throw 1;
+        } else {
+            filler=argv[1];
+        }
+    }
+    catch(bool err){
+        std::cout << "Program must have an alphanumerical parameter.";
+    }
     fill fillet;
-    for(double i=0; true; i=i+.02){
+    //for(double i=0; true; i=i+.02){
+    for(double i=0; true; i=i+.1){
         update_winsize();
         double sine=sin(i);
         double sineup=(sine*w+w)/2;
