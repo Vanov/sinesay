@@ -4,8 +4,8 @@
 #include <cmath>
 
 std::string filler;
-int w,h,wdf;
-double num_eq;
+int w,h,wdf, update_speed;
+double num_eq, speed;
 
 void update_winsize(){
     struct winsize size;
@@ -25,26 +25,20 @@ class fill {
 };
 
 int main(int argc, char* argv[]){
-    try{
-        if(argv[1]==""){
+        if(not(argv[1])){
+            std::cout << "Program must have an alphanumerical parameter." << std::endl;
             return 0;
-            throw 1;
-        } else {
-            filler=argv[1];
-        }
-    }
-    catch(bool err){
-        std::cout << "Program must have an alphanumerical parameter.";
-    }
+        } else filler=argv[1];
     fill fillet;
-    //for(double i=0; true; i=i+.02){
-    for(double i=0; true; i=i+.1){
+    speed=.1;
+    update_speed=60000;
+    for(double i=0; true; i=i+speed){
         update_winsize();
         double sine=sin(i);
         double sineup=(sine*w+w)/2;
         for(int ct=0; ct<=sineup; ct++){
             std::cout << fillet.charstr(filler);;
         } std::cout << std::endl;
-        usleep(60000);
+        usleep(update_speed);
     }
 }
